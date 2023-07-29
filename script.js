@@ -1,5 +1,6 @@
 const foodList = [{
     "name": "Veggie Delight",
+    "id": 1,
     "imageSrc": "https://source.unsplash.com/random?veggies",
     "time": "30 min",
     "type": "veg",
@@ -8,6 +9,7 @@ const foodList = [{
 },
 {
     "name": "Chicken Grill",
+    "id": 2,
     "imageSrc": "https://source.unsplash.com/random?chicken",
     "time": "45 min",
     "type": "non-veg",
@@ -16,6 +18,7 @@ const foodList = [{
 },
 {
     "name": "Cheese Pizza",
+    "id": 3,
     "imageSrc": "https://source.unsplash.com/random?pizza",
     "time": "40 min",
     "type": "veg",
@@ -24,6 +27,7 @@ const foodList = [{
 },
 {
     "name": "Steak",
+    "id": 4,
     "imageSrc": "https://source.unsplash.com/random?steak",
     "time": "60 min",
     "type": "non-veg",
@@ -32,6 +36,7 @@ const foodList = [{
 },
 {
     "name": "Grilled Salmon",
+    "id": 5,
     "imageSrc": "https://source.unsplash.com/random?salmon",
     "time": "50 min",
     "type": "non-veg",
@@ -40,6 +45,7 @@ const foodList = [{
 },
 {
     "name": "Tomato Pasta",
+    "id": 6,
     "imageSrc": "https://source.unsplash.com/random?pasta",
     "time": "35 min",
     "type": "veg",
@@ -48,6 +54,7 @@ const foodList = [{
 },
 {
     "name": "Vegan Salad",
+     "id": 7,
     "imageSrc": "https://source.unsplash.com/random?salad",
     "time": "20 min",
     "type": "veg",
@@ -56,6 +63,7 @@ const foodList = [{
 },
 {
     "name": "Fried Chicken",
+     "id": 8,
     "imageSrc": "https://source.unsplash.com/random?friedChicken",
     "time": "55 min",
     "type": "non-veg",
@@ -64,6 +72,7 @@ const foodList = [{
 },
 {
     "name": "Mushroom Risotto",
+     "id": 9,
     "imageSrc": "https://source.unsplash.com/random?risotto",
     "time": "45 min",
     "type": "veg",
@@ -72,6 +81,7 @@ const foodList = [{
 },
 {
     "name": "Burger",
+     "id": 10,
     "imageSrc": "https://source.unsplash.com/random?burger",
     "time": "30 min",
     "type": "non-veg",
@@ -80,6 +90,7 @@ const foodList = [{
 },
 {
     "name": "Paneer Tikka",
+     "id": 11,
     "imageSrc": "https://source.unsplash.com/random?paneerTikka",
     "time": "40 min",
     "type": "veg",
@@ -88,6 +99,7 @@ const foodList = [{
 },
 {
     "name": "BBQ Ribs",
+     "id": 12,
     "imageSrc": "https://source.unsplash.com/random?ribs",
     "time": "70 min",
     "type": "non-veg",
@@ -96,6 +108,7 @@ const foodList = [{
 },
 {
     "name": "Caesar Salad",
+     "id": 13,
     "imageSrc": "https://source.unsplash.com/random?caesarSalad",
     "time": "25 min",
     "type": "veg",
@@ -104,6 +117,7 @@ const foodList = [{
 },
 {
     "name": "Fish Tacos",
+    "id": 14,
     "imageSrc": "https://source.unsplash.com/random?fishTacos",
     "time": "35 min",
     "type": "non-veg",
@@ -112,6 +126,7 @@ const foodList = [{
 },
 {
     "name": "Chocolate Cake",
+    "id": 15,
     "imageSrc": "https://source.unsplash.com/random?chocolateCake",
     "time": "90 min",
     "type": "veg",
@@ -147,7 +162,7 @@ function displayRecipes(foodList) {
                     <div id="time" class="display-flex-row content-space-between">
                         <p>${food.time}</p>
                         <div>
-                            <img src="${isLikedImgUrl}" alt="" onClick="likeAnItem(${ind})">
+                            <img src="${isLikedImgUrl}" alt="" onClick="likeAnItem(${food.id})">
                             <img src="Images/comments.png" alt="">
                         </div>
                     </div>
@@ -270,9 +285,10 @@ below4Checkbox.addEventListener("change", (event) => {
 
 // 5 -> like and dislike an item
 
-function likeAnItem(index) {
-    foodList[index].isLiked = foodList[index].isLiked === true ? false : true;
-    console.log('liked an item', index, foodList[index].isLiked);
-    isLikedImgUrl = (foodList[index].isLiked === true) ? 'Images/Vector.png' : 'Images/VectorDis.png';
+function likeAnItem(id) {
+    const foodItem = foodList.filter(food => (food.id === id));
+    foodItem[0].isLiked = foodItem[0].isLiked === true ? false : true;
+    console.log('liked an item', id, foodItem[0].isLiked);
+    isLikedImgUrl = (foodItem[0].isLiked === true) ? 'Images/Vector.png' : 'Images/VectorDis.png';
     searchRecipes("");
 }
